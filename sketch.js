@@ -6,6 +6,7 @@ let P0 = [100, 300]
 let P1 = [150, 100]
 let P2 = [250, 100]
 let P3 = [300, 300]
+let P4 = [400, 300]
 
 let t = 0
 let Pr = 5
@@ -50,16 +51,42 @@ let Ey = lerp(B[1],C[1],t)
 let E = [Ex,Ey]
 circle(E[0],E[1],Pr)
 
+//maybe||
+//punkt F
+let Fx = lerp(P3[0],P4[0],t)
+let Fy = lerp(P3[1],P4[1],t)
+let F = [Fx,Fy]
+circle(F[0],F[1],Pr)
+
+//punkt G
+let Gx = lerp(C[0],F[0],t)
+let Gy = lerp(C[1],F[1],t)
+let G = [Gx,Gy]
+circle(G[0],G[1],Pr)
+
+
+
+//maybe||
+
+
 //punkt P
-fill('green')
+
 let Px = lerp(D[0],E[0],t)
 let Py = lerp(D[1],E[1],t)
 let P = [Px,Py]
 circle(P[0],P[1],Pr)
-kurve.push(P)
 
-console.log(Px,Py)
 
+
+
+//punkt H
+fill('green')
+let Hx = lerp(P[0],G[0],t)
+let Hy = lerp(P[1],G[1],t)
+let H = [Hx,Hy]
+circle(H[0],H[1],Pr)
+kurve.push(H)
+console.log(Hx,Hy)
 
 //punkter P0-P3
 fill('red')
@@ -67,13 +94,15 @@ circle(P0[0],P0[1],Pr)
 circle(P1[0],P1[1],Pr)
 circle(P2[0],P2[1],Pr)
 circle(P3[0],P3[1],Pr)
+circle(P4[0],P4[1],Pr)
 
-//linjestykker mellem punkter P0123
+//linjestykker mellem punkter P01234
 stroke('black')
 strokeWeight(weight=0.5)
 line(P0[0],P0[1],P1[0],P1[1])
 line(P1[0],P1[1],P2[0],P2[1])
 line(P2[0],P2[1],P3[0],P3[1])
+line(P3[0],P3[1],P4[0],P4[1])
 
 //linjestykker mellem punkter AB og BC
 line(A[0],A[1],B[0],B[1])
@@ -83,7 +112,11 @@ line(B[0],B[1],C[0],C[1])
 
 line(D[0],D[1],E[0],E[1])
 
+//linjestykker mellem punkter F og C
+line(F[0],F[1],C[0],C[1])
 
+//linjestykker mellem punkter G og P
+line(G[0],G[1],P[0],P[1])
 
 
 
@@ -143,6 +176,14 @@ line(kurve[i][0],kurve[i][1],lonni[0],lonni[1])
 	if(keyIsPressed){
 		if(key==4){
 			P3=[mouseX,mouseY]
+			t=0
+			kurve = []
+		}
+	}
+
+	if(keyIsPressed){
+		if(key==5){
+			P4=[mouseX,mouseY]
 			t=0
 			kurve = []
 		}
