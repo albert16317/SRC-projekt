@@ -12,14 +12,14 @@ let t = 0
 let Pr = 5
 let kurve = []
 let kurvegem = []
-let lonni = []
-let carsten = []
+let bboxp= []
 let i
 let j
 
 let kurvess = []
 function draw()
 {
+	
 	createCanvas(12000, 1200);
 	background(100);
 
@@ -162,7 +162,7 @@ for(kurv of kurvegem){
 	for(i=1;i<kurv.length;i++){
 	
 	line(kurv[i-1][0],kurv[i-1][1],kurv[i][0],kurv[i][1])
-	console.log(kurv[i])
+	//console.log(kurv[i])
 }
 }
 
@@ -222,11 +222,16 @@ let maxX = Math.max(P0[0], P1[0], P2[0], P3[0],	P4[0]);
 let minY = Math.min(P0[1], P1[1], P2[1], P3[1], P4[1]);
 let maxY = Math.max(P0[1], P1[1], P2[1], P3[1], P4[1]);
 stroke('red');
-strokeWeight(0.2);
+strokeWeight(0.5);
 noFill();
 rect(minX, minY, maxX - minX, maxY - minY);
 
+bboxp.push([minX, minY, maxX, maxY])
+for(j=1;j<bboxp.length;j++){
+	rect(bboxp[j][0], bboxp[j][1], bboxp[j][2] - bboxp[j][0], bboxp[j][3] - bboxp[j][1]);
 
 
+
+}
 
 }
