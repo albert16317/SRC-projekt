@@ -188,4 +188,23 @@ line(kurve[i][0],kurve[i][1],lonni[0],lonni[1])
 			kurve = []
 		}
 	}
+	//bounding box
+
+//lokal minX og maxX
+let minX = Math.min(P0[0], P1[0], P2[0], P3[0], P4[0]);
+let maxX = Math.max(P0[0], P1[0], P2[0], P3[0],	P4[0]);
+//lokal minY og maxY
+let minY = Math.min(P0[1], P1[1], P2[1], P3[1], P4[1]);
+let maxY = Math.max(P0[1], P1[1], P2[1], P3[1], P4[1]);
+
+
+
+stroke('red');
+strokeWeight(0.2);
+noFill();
+rect(minX, minY, maxX - minX, maxY - minY);
+
+let bbox = [minX, maxX, minY, maxY];
+
+
 }
