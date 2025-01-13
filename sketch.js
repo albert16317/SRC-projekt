@@ -1,6 +1,5 @@
 function setup() 
 {
-
 	frameRate(20)
 }
 let P0 = [100, 300]
@@ -9,20 +8,21 @@ let P2 = [250, 100]
 let P3 = [300, 300]
 
 let t = 0
-let Pr = 10
+let Pr = 5
 let kurve = []
 let lonni = []
 let i
 function draw()
 {
-	createCanvas(400, 400);
-
-frameRate(60)
+	createCanvas(1200, 1200);
+	background(100);
+frameRate[1201]
 
 //punkt A
 let Ax = lerp(P0[0],P1[0],t)
 let Ay = lerp(P0[1],P1[1],t)
 let A = [Ax,Ay]
+fill('blue')
 circle(A[0],A[1],Pr)
 
 //punkt B
@@ -51,6 +51,7 @@ let E = [Ex,Ey]
 circle(E[0],E[1],Pr)
 
 //punkt P
+fill('green')
 let Px = lerp(D[0],E[0],t)
 let Py = lerp(D[1],E[1],t)
 let P = [Px,Py]
@@ -68,6 +69,8 @@ circle(P2[0],P2[1],Pr)
 circle(P3[0],P3[1],Pr)
 
 //linjestykker mellem punkter P0123
+stroke('black')
+strokeWeight(weight=0.5)
 line(P0[0],P0[1],P1[0],P1[1])
 line(P1[0],P1[1],P2[0],P2[1])
 line(P2[0],P2[1],P3[0],P3[1])
@@ -85,7 +88,7 @@ line(D[0],D[1],E[0],E[1])
 
 
 if(t<1){
-	t+=0.01
+	t+=0.02
 }
 if(t>1){
 	t=0
@@ -95,6 +98,8 @@ if(t>1){
 
 
 //kurve fra start til punkt P
+stroke('yellow')
+strokeWeight(weight=4)
 for(i=0;i<kurve.length;i++){
 	if(i>0){
 		lonni=kurve[i-1]
@@ -103,8 +108,43 @@ for(i=0;i<kurve.length;i++){
 		lonni=kurve[0]
 	
 	}
-	stroke('red')
-	line(kurve[i][0],kurve[i][1],lonni[0],lonni[1])
+line(kurve[i][0],kurve[i][1],lonni[0],lonni[1])
 	
+}
+
+
+
+
+
+	if(keyIsPressed){
+		if(key==1){
+			P0=[mouseX,mouseY]
+			t=0
+			kurve = []
+		}
+	}
+	
+	if(keyIsPressed){
+		if(key==2){
+			P1=[mouseX,mouseY]
+			t=0
+			kurve = []
+		}
+	}
+	
+	if(keyIsPressed){
+		if(key==3){
+			P2=[mouseX,mouseY]
+			t=0
+			kurve = []
+		}
+	}
+	
+	if(keyIsPressed){
+		if(key==4){
+			P3=[mouseX,mouseY]
+			t=0
+			kurve = []
+		}
 	}
 }
