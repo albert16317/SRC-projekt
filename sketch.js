@@ -1,6 +1,6 @@
 function setup() 
 {
-	frameRate(20)
+	
 }
 let P0 = [100, 300]
 let P1 = [150, 100]
@@ -11,20 +11,38 @@ let P4 = [400, 300]
 let t = 0
 let Pr = 5
 let kurve = []
+let kurvegem = []
 let lonni = []
+let carsten = []
 let i
+let j
+
+let kurvess = []
 function draw()
 {
-	createCanvas(1200, 1200);
+	createCanvas(12000, 1200);
 	background(100);
-frameRate[1201]
 
+if (t >= 1) {
+	P0 = P4
+	P1 = [random(P0[0], P0[0]+300), random(100, 1100)]
+	P2 = [random(P0[0], P0[0]+300), random(100, 1100)]
+	P3 = [random(P0[0], P0[0]+300), random(100, 1100)]
+	P4 = [random(P0[0], P0[0]+300), random(100, 1100)]
+	t = 0
+	kurvegem.push(kurve)
+	kurve = []
+	
+}
+
+//nsole.log(t)
 //punkt A
 let Ax = lerp(P0[0],P1[0],t)
 let Ay = lerp(P0[1],P1[1],t)
 let A = [Ax,Ay]
 fill('blue')
 circle(A[0],A[1],Pr)
+
 
 //punkt B
 let Bx = lerp(P1[0],P2[0],t)
@@ -86,7 +104,7 @@ let Hy = lerp(P[1],G[1],t)
 let H = [Hx,Hy]
 circle(H[0],H[1],Pr)
 kurve.push(H)
-console.log(Hx,Hy)
+//console.log(Hx,Hy)
 
 //punkter P0-P3
 fill('red')
@@ -123,27 +141,34 @@ line(G[0],G[1],P[0],P[1])
 if(t<1){
 	t+=0.02
 }
-if(t>1){
-	t=0
-	kurve = []
-}
 
 
 
-//kurve fra start til punkt P
-stroke('yellow')
+//kurvenutid
+
 strokeWeight(weight=4)
-for(i=0;i<kurve.length;i++){
-	if(i>0){
-		lonni=kurve[i-1]
-	}
-	else{
-		lonni=kurve[0]
+stroke(255,255,0)
+for(i=1;i<kurve.length;i++){
 	
-	}
-line(kurve[i][0],kurve[i][1],lonni[0],lonni[1])
+line(kurve[i-1][0],kurve[i-1][1],kurve[i][0],kurve[i][1])
 	
 }
+
+//kurvedatid
+
+strokeWeight(weight=4)
+stroke(0,255,255)
+for(kurv of kurvegem){
+	for(i=1;i<kurv.length;i++){
+	
+	line(kurv[i-1][0],kurv[i-1][1],kurv[i][0],kurv[i][1])
+	console.log(kurv[i])
+}
+}
+
+
+
+
 
 
 
@@ -188,4 +213,20 @@ line(kurve[i][0],kurve[i][1],lonni[0],lonni[1])
 			kurve = []
 		}
 	}
+	//bounding box
+
+//lokal minX og maxX
+let minX = Math.min(P0[0], P1[0], P2[0], P3[0], P4[0]);
+let maxX = Math.max(P0[0], P1[0], P2[0], P3[0],	P4[0]);
+//lokal minY og maxY
+let minY = Math.min(P0[1], P1[1], P2[1], P3[1], P4[1]);
+let maxY = Math.max(P0[1], P1[1], P2[1], P3[1], P4[1]);
+stroke('red');
+strokeWeight(0.2);
+noFill();
+rect(minX, minY, maxX - minX, maxY - minY);
+
+
+
+
 }
