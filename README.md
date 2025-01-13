@@ -1,8 +1,2 @@
 # SRC-projek
-Lonnie
-hej 
-mit navn er lonnie
-jgjgj
-jj
-
-goddag atirat
+hello hello
