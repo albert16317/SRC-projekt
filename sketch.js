@@ -226,6 +226,7 @@ strokeWeight(0.2);
 noFill();
 rect(minX, minY, maxX - minX, maxY - minY);
 
-// Generate new Bezier curve starting where the previous one ended
+
+
 
 }
