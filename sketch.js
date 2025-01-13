@@ -15,25 +15,15 @@ let kurvegem = []
 let bboxp= []
 let i
 let j
-
+let width = 400
 let kurvess = []
 function draw()
 {
 	
-	createCanvas(12000, 1200);
+	createCanvas(width, 1200);
 	background(100);
 
-if (t >= 1) {
-	P0 = P4
-	P1 = [random(P0[0], P0[0]+300), random(100, 1100)]
-	P2 = [random(P0[0], P0[0]+300), random(100, 1100)]
-	P3 = [random(P0[0], P0[0]+300), random(100, 1100)]
-	P4 = [random(P0[0], P0[0]+300), random(100, 1100)]
-	t = 0
-	kurvegem.push(kurve)
-	kurve = []
-	
-}
+
 
 //nsole.log(t)
 //punkt A
@@ -233,5 +223,17 @@ for(j=1;j<bboxp.length;j++){
 
 
 }
+if (t >= 1) {
+	P0 = P4
+	P1 = [random(P0[0], P0[0]+300), random(100, 1100)]
+	P2 = [random(P0[0], P0[0]+300), random(100, 1100)]
+	P3 = [random(P0[0], P0[0]+300), random(100, 1100)]
+	P4 = [random(P0[0], P0[0]+300), random(100, 1100)]
+	t = 0
+	kurvegem.push(kurve)
+	kurve = []
+	width += 300
 
+	
+}
 }
