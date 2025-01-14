@@ -8,6 +8,8 @@ let P2 = [250, 100]
 let P3 = [300, 300]
 let P4 = [400, 300]
 
+let sidst 
+
 let t = 0
 let Pr = 5
 let kurve = []
@@ -140,8 +142,8 @@ strokeWeight(weight=4)
 stroke(255,255,0)
 for(i=1;i<kurve.length;i++){
 	
-line(kurve[i-1][0],kurve[i-1][1],kurve[i][0],kurve[i][1])
-	
+	line(kurve[i-1][0],kurve[i-1][1],kurve[i][0],kurve[i][1])
+	sidst = [kurve[i][0],kurve[i][1]]
 }
 
 //kurvedatid
@@ -203,7 +205,7 @@ for(kurv of kurvegem){
 			kurve = []
 		}
 	}
-	//bounding box
+//bounding box
 
 //lokal minX og maxX
 let minX = Math.min(P0[0], P1[0], P2[0], P3[0], P4[0]);
@@ -214,17 +216,17 @@ let maxY = Math.max(P0[1], P1[1], P2[1], P3[1], P4[1]);
 stroke('red');
 strokeWeight(0.5);
 noFill();
-rect(minX, minY, maxX - minX, maxY - minY);
+//rect(minX, minY, maxX - minX, maxY - minY);
 
 bboxp.push([minX, minY, maxX, maxY])
 for(j=1;j<bboxp.length;j++){
-	rect(bboxp[j][0], bboxp[j][1], bboxp[j][2] - bboxp[j][0], bboxp[j][3] - bboxp[j][1]);
+	//rect(bboxp[j][0], bboxp[j][1], bboxp[j][2] - bboxp[j][0], bboxp[j][3] - bboxp[j][1]);
 
 
 
 }
 if (t >= 1) {
-	P0 = P4
+	P0 = sidst
 	P1 = [random(P0[0], P0[0]+300), random(100, 1100)]
 	P2 = [random(P0[0], P0[0]+300), random(100, 1100)]
 	P3 = [random(P0[0], P0[0]+300), random(100, 1100)]
