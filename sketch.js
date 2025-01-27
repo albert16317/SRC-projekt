@@ -19,15 +19,21 @@ let i
 let j
 let width = 400
 let kurvess = []
+
+let bxp0 = []
+let bxp1 = []
+let bxp2 = []
+let bxkurve = []
+let gemMaxMinXY = []
+let k
 function draw()
-{
+{frameRate(10)
 	
 	createCanvas(width, 1200);
 	background(100);
 
 
 
-//nsole.log(t)
 //punkt A
 let Ax = lerp(P0[0],P1[0],t)
 let Ay = lerp(P0[1],P1[1],t)
@@ -131,7 +137,7 @@ line(G[0],G[1],P[0],P[1])
 
 
 if(t<1){
-	t+=0.02
+	t+=0.1
 }
 
 
@@ -216,26 +222,58 @@ let maxY = Math.max(P0[1], P1[1], P2[1], P3[1], P4[1]);
 stroke('red');
 strokeWeight(0.5);
 noFill();
-//rect(minX, minY, maxX - minX, maxY - minY);
-
+rect(minX, minY, maxX - minX, maxY - minY);
+//MinMaxpush
 bboxp.push([minX, minY, maxX, maxY])
 for(j=1;j<bboxp.length;j++){
-	//rect(bboxp[j][0], bboxp[j][1], bboxp[j][2] - bboxp[j][0], bboxp[j][3] - bboxp[j][1]);
-
-
+	rect(bboxp[j][0], bboxp[j][1], bboxp[j][2] - bboxp[j][0], bboxp[j][3] - bboxp[j][1]);
 
 }
+
+
 if (t >= 1) {
 	P0 = sidst
-	P1 = [random(P0[0], P0[0]+300), random(100, 1100)]
-	P2 = [random(P0[0], P0[0]+300), random(100, 1100)]
-	P3 = [random(P0[0], P0[0]+300), random(100, 1100)]
-	P4 = [random(P0[0], P0[0]+300), random(100, 1100)]
+	P1 = [(P0[0]+50), random(100, 1100)]
+	P2 = [(P0[0]+50), random(100, 1100)]
+	P3 = [(P0[0]+50), random(100, 1100)]
+	P4 = [(P0[0]+100), random(100, 1100)]
 	t = 0
 	kurvegem.push(kurve)
 	kurve = []
 	width += 300
 
-	
 }
+
+console.log(bxkurve)
+//console.log(bxp0,bxp1,bxp2)
+console.log(t)
+if(k>0){
+for(k;k<bboxp.length;k++){
+	bxp0 = [bboxp[k-1][2]-bboxp[k-1][0], bboxp[k-1][3]]
+	bxp1 = [bboxp[k-1][2], bboxp[k-1][3]]
+	bxp2 = [bboxp[k][2]-bboxp[k][0], bboxp[k][3]]
+	let bxle1X = lerp(bxp0[0], bxp1[0],t)
+	let bxle1Y = lerp(bxp0[1], bxp1[1],t)
+	let bxle1 = [bxle1X,bxle1Y]
+
+	let bxle2X = lerp(bxp1[0], bxp2[0],t)
+	let bxle2Y = lerp(bxp1[1], bxp2[1],t)
+	let bxle2 = [bxle2X,bxle2Y]
+
+	let bxle3X = lerp(bxle1[0], bxle2[0],t)
+	let bxle3Y = lerp(bxle1[1], bxle2[1],t)
+	let bxle3 = [bxle3X,bxle3Y]
+
+	bxkurve.push(bxle3)
+
+	
+
+}
+for(let o=1;o<kurve.length;o++){
+	
+	line(bxkurve[o-1][0],bxkurve[o-1][1],bxkurve[o][0],bxkurve[o][1])
+	sidst = [bxkurve[o][0],bxkurve[o][1]]
+}
+}
+
 }
